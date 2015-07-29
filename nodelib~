@@ -1,0 +1,37 @@
+var SPI = require("j-spi");
+
+var spi = new SPI.Spi('/dev/spidev1.0', {'mode': SPI.MODE['MODE_1']});
+spi.maxSpeed(1000000);
+spi.open();
+
+function UART_Write(data, UART_number){
+ switch(UART_number)
+ {
+  case 1:
+   address_high = 0x21;
+   address_low  = 0x00;
+   break;
+  case 2:
+   address_high = 0x22;
+   address_low  = 0x00;
+   break;
+  case 3:
+   address_high = 0x23;
+   address_low = 0x00;
+   break;
+  case 4:
+   address_high = 0x24;
+   address_low  = 0x00;
+   break;
+  default:
+   break;
+ }
+
+ checksum = 0xFF - (0x10 + data.length);
+
+ buff = new Buffer([0x3A, 0x10, data.length, address_high, address,low,
+ data, checksum);
+}
+
+
+
