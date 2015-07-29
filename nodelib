@@ -1,3 +1,4 @@
+minhapica
 var SPI = require("j-spi");
 
 var spi = new SPI.Spi('/dev/spidev1.0', {'mode': SPI.MODE['MODE_1']});
